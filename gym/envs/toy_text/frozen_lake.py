@@ -184,7 +184,7 @@ class FrozenLakeEnv(Env):
             elif newletter == b"F":
                 reward = -0.04 
             elif newletter == b"H":
-                reward = -1
+                reward = -100
             else:
                 reward = -0.04
             #reward = float(newletter == b"G")
