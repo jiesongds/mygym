@@ -146,7 +146,7 @@ class FrozenLakeEnv(Env):
             desc = MAPS[map_name]
         self.desc = desc = np.asarray(desc, dtype="c")
         self.nrow, self.ncol = nrow, ncol = desc.shape
-        self.reward_range = (0, 1)
+        self.reward_range = (-100, 1000)
 
         nA = 4
         nS = nrow * ncol
@@ -180,13 +180,13 @@ class FrozenLakeEnv(Env):
             # holes: -1 
             # gold: 1000
             if newletter == b"G":
-                reward = 1000
+                reward = 1000.0
             elif newletter == b"F":
                 reward = -0.04 
             elif newletter == b"H":
-                reward = -100
+                reward = -100.0
             else:
-                reward = -0.04
+                reward = -0.001
             #reward = float(newletter == b"G")
             return newstate, reward, done
 
