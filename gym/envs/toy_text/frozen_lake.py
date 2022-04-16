@@ -175,7 +175,17 @@ class FrozenLakeEnv(Env):
             newstate = to_s(newrow, newcol)
             newletter = desc[newrow, newcol]
             done = bytes(newletter) in b"GH"
-            reward = float(newletter == b"G")
+            # reward shaping here 
+            # frozen: -0.04
+            # holes: -1 
+            # gold: 1000
+            if newletter == b"G":
+                reward = 1000
+            elif newletter == b"F":
+                reward = -0.04 
+            elif newletter == b"H":
+                reward = -1
+            #reward = float(newletter == b"G")
             return newstate, reward, done
 
         for row in range(nrow):
